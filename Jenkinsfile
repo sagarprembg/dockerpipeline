@@ -9,7 +9,7 @@ pipeline{
   stages {
       stage("clone"){
           steps{
-              sh 'git clone https://github.com/sagarprembg/dockerpipeline.git'
+              sh 'git pull https://github.com/sagarprembg/dockerpipeline.git'
           }
       }
       stage("build"){
