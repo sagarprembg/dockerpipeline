@@ -1,5 +1,5 @@
 FROM alpine
-RUN  sudo apt-get update
-RUN  sudo apt-get install git
+RUN apt-get update
+RUN apt-get install git
 RUN mkdir repo 
 COPY file  /repo
