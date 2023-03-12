@@ -12,27 +12,21 @@ pipeline{
               sh 'git pull https://github.com/sagarprembg/dockerpipeline.git'
           }
       }
-      stage("build"){
+      stage("creating ecr"){
           steps{
-              sh 'docker build -t premsagarbg/nature:latest .'
+              sh 'aws ecr create-repository --repository nature1 --region ap-south-1'
           }
       }
-      stage("login"){
+      stage("build"){
           steps{
-              sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+              sh 'docker build -t 009110254952.dkr.ecr.ap-south-1.amazonaws.com/nature1:latest .'
           }
       }
       stage("push"){
           steps{
-              sh "docker push premsagarbg/nature:latest"
+              sh "docker push 009110254952.dkr.ecr.ap-south-1.amazonaws.com/nature1:latest"
           }
       }
       
   }
-  post {
-      always{
-          sh 'docker logout'
-      }
-      
-  }
-}
+ 
